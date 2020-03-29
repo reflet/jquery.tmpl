@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScriptテストページ</title>
+  <style type="text/css">
+    body,table,h1,h2,h3,h4,h5,h6 { font-size:12px; line-height:22px; }
+    body,table,tr,th,td,div,p,ul,li,dl,dt,dd,img{ padding:0; margin:0; }
+    #movieList { margin-left:5px; }
+    #movieList2 { margin-left:5px; }
+    #movieList3 { margin-left:5px; }
+  </style>
+</head>
+<body>
+  <h2>■ 変数に文字列としてテンプレートを定義して利用</h2>
+  <ul id="movieList"></ul>
+
+  <h2>■ 外部scriptにテンプレートを定義して利用</h2>
+  <ul id="movieList2"></ul>
+
+  <h2>■ 外部scriptにテンプレートを定義して利用 (※テンプレート内でループ処理あり)</h2>
+  <ul id="movieList3"></ul>
+
+  <script src="./js/lib/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="./js/lib/jquery.tmpl.js"></script>
+  <script type="text/javascript" src="./js/function.js"></script>
+  <script type="text/javascript">
+    (function($){
+      $(function(){ $(document).reflet({}); });
+    })(jQuery);
+  </script>
+
+  <script id="movieTemplate2" type="text/x-jquery-tmpl">
+    <li><b>${Name}</b> (${ReleaseYear})</li>
+  </script>
+
+  <script id="movieTemplate3" type="text/x-jquery-tmpl">
+    <li>
+        Title: ${Name}.
+        {{each Languages}}
+            ${$index + 1}: <em>${$value}. </em>
+        {{/each}}
+    </li>
+  </script>
+
+</body>
+</html>
